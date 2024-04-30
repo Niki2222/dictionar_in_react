@@ -6,32 +6,33 @@ let foundWord = document.getElementById('foundWord');
 foundWord.style.display = "none";
 
 
-function addWord(elem) {
-  if (!wordsList.includes(elem) && elem.length > 0) {
-    let answer = prompt("This word is not in the dictionary. If you want to add it, enter 'yes'?").toLocaleLowerCase();
-    if (answer === "yes") {
-      foundWord.style.display = "none";
-      wordsList.push(elem);
-    } else {
-      foundWord.style.display = "none";
-      document.getElementById('wordToSearch').value = "";
-    }
-  }
-}
-
-
-// function AddWord(props) {
-//   const {elem} = props;
-//   function handleClick(event) {
-//     wordsList.push(elem);
+// function addWord(elem) {
+//   if (!wordsList.includes(elem) && elem.length > 0) {
+//     let answer = prompt("This word is not in the dictionary. If you want to add it, enter 'yes'?").toLocaleLowerCase();
+//     if (answer === "yes") {
+//       foundWord.style.display = "none";
+//       wordsList.push(elem);
+//     } else {
+//       foundWord.style.display = "none";
+//       document.getElementById('wordToSearch').value = "";
+//     }
 //   }
-
-//   return (
-//     <>
-//       <button onClick={handleClick}>Add item</button>
-//     </>
-//   )
 // }
+
+
+function AddWord(props) {
+  const {elem} = props;
+  function handleClick(event) {
+    wordsList.push(elem);
+    console.log(wordsList)
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>Add item</button>
+    </>
+  )
+}
 
 function SearchWords() {
   function searchWord() {
@@ -49,9 +50,11 @@ function SearchWords() {
       ReactDOM.render(x, foundWord);
     }
     if (!wordsList.includes(searchedWord)) {
-      addWord(searchedWord);
-      // console.log("word not found");
-      // <AddWord elem={searchWord}/>
+      // addWord(searchedWord);
+
+      console.log("word not found", searchedWord, wordsList);
+      return <AddWord elem={searchedWord}/>
+      
     }
   } 
 
